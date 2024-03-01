@@ -34,13 +34,20 @@ public static class ArraysTester {
     /// <returns>array of doubles that are the multiples of the supplied number</returns>
     private static double[] MultiplesOf(double number, int length)
     {
-        // TODO Problem 1 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        // Create an empty list to store the multiples
+        List<double> multiples = new List<double>();
 
-        return new double[0]; // replace this return statement with your own
+        // Use a loop to iterate 'length' number of times
+        for (int i = 0; i < length; i++)
+        {
+        // Multiply the 'number' by the current iteration index and add the result to the list of multiples
+        multiples.Add(number * (i + 1));
+        }
+
+        // Return the list of multiples as an array
+        return multiples.ToArray();
     }
+
     
     /// <summary>
     /// Rotate the 'data' to the right by the 'amount'.  For example, if the data is 
@@ -52,10 +59,32 @@ public static class ArraysTester {
     /// </summary>
     private static void RotateListRight(List<int> data, int amount)
     {
-        // TODO Problem 2 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        // Check if the amount is within the valid range
+        if (amount < 1 || amount > data.Count)
+        {
+            throw new ArgumentException("Invalid amount");
+        }
 
+        // Create a temporary list to store the rotated elements
+        List<int> temp = new List<int>();
+
+        // Move the last 'amount' elements to the temporary list
+        for (int i = data.Count - amount; i < data.Count; i++)
+        {
+            temp.Add(data[i]);
+        }
+
+        // Move the remaining elements to their new positions in the data list
+        for (int i = data.Count - amount - 1; i >= 0; i--)
+        {
+            data[i + amount] = data[i];
+        }
+
+        // Move the elements from the temporary list back to the data list
+        for (int i = 0; i < temp.Count; i++)
+        {
+            data[i] = temp[i];
+        }
     }
+
 }
