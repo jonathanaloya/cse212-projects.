@@ -76,7 +76,7 @@
         // Defect(s) Found: 
 
         Console.WriteLine("---------");
-
+ 
         // Test 5
         // Scenario: Try to get the next person from an empty queue
         // Expected Result: Error message should be displayed
