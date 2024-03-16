@@ -108,6 +108,21 @@ public static class SetsAndMapsTester {
     /// </summary>
     /// <param name="words">An array of 2-character words (lowercase, no duplicates)</param>
     private static void DisplayPairs(string[] words) {
+        HashSet<string> set = new HashSet<string>();
+    
+        foreach (string str in words)
+        {
+            string reverse = new string(str.Reverse().ToArray());
+        
+            if (set.Contains(reverse))
+            {
+                Console.WriteLine($"{str} & {reverse}");
+            }
+            else
+            {
+                set.Add(str);
+            }
+        }
         // To display the pair correctly use something like:
         // Console.WriteLine($"{word} & {pair}");
         // Each pair of words should displayed on its own line.
@@ -129,8 +144,17 @@ public static class SetsAndMapsTester {
     /// #############
     private static Dictionary<string, int> SummarizeDegrees(string filename) {
         var degrees = new Dictionary<string, int>();
-        foreach (var line in File.ReadLines(filename)) {
+        foreach (var line in File.ReadLines("C:/Users/hp/respiratory/cse212-projects/week03/code/census.txt")) {
             var fields = line.Split(",");
+            var degree = fields[3].Trim();
+            if (degrees.ContainsKey(degree))
+            {
+                degrees[degree]++;
+            }
+            else
+            {
+                degrees[degree] = 1;
+            }
             // Todo Problem 2 - ADD YOUR CODE HERE
         }
 
@@ -156,9 +180,45 @@ public static class SetsAndMapsTester {
     /// #############
     /// # Problem 3 #
     /// #############
-    private static bool IsAnagram(string word1, string word2) {
-        // Todo Problem 3 - ADD YOUR CODE HERE
-        return false;
+    private static bool IsAnagram(string word1, string word2)
+    {
+        Dictionary<char, int> dict = new Dictionary<char, int>();
+
+        foreach (char c in word1.ToLower().Replace(" ", ""))
+        {
+            if (c != ' ')
+            {
+                if (dict.ContainsKey(c))
+                {
+                    dict[c]++;
+                }
+                else
+                {
+                    dict[c] = 1;
+                }
+            }
+        }
+
+        foreach (char c in word2.ToLower().Replace(" ", ""))
+        {
+            if (c != ' ')
+            {
+                if (dict.ContainsKey(c))
+                {
+                    dict[c]--;
+                    if (dict[c] == 0)
+                    {
+                        dict.Remove(c);
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        return dict.Count == 0;
     }
 
     /// <summary>

@@ -29,6 +29,15 @@ public class Maze {
     /// can't move, then display "Can't go that way!"
     /// </summary>
     public void MoveLeft() {
+       if (_mazeMap.TryGetValue((_currX - 1, _currY), out bool[] movements)) {
+            if (movements[0]) {
+                _currX--;
+            } else {
+                Console.WriteLine("Can't go that way!");
+            }
+        } else {
+        Console.WriteLine("Can't go that way!");
+        } 
         // FILL IN CODE
     }
 
@@ -37,6 +46,15 @@ public class Maze {
     /// can't move, then display "Can't go that way!"
     /// </summary>
     public void MoveRight() {
+        if (_mazeMap.TryGetValue((_currX + 1, _currY), out bool[] movements)) {
+            if (movements[1]) {
+                _currX++;
+            } else {
+                Console.WriteLine("Can't go that way!");
+            }
+        } else {
+        Console.WriteLine("Can't go that way!");
+        }
         // FILL IN CODE
     }
 
@@ -45,6 +63,15 @@ public class Maze {
     /// can't move, then display "Can't go that way!"
     /// </summary>
     public void MoveUp() {
+        if (_mazeMap.TryGetValue((_currX, _currY - 1), out bool[] movements)) {
+            if (movements[2]) {
+                _currY--;
+            } else {
+                Console.WriteLine("Can't go that way!");
+            }
+        } else {
+        Console.WriteLine("Can't go that way!");
+        }
         // FILL IN CODE
     }
 
@@ -53,6 +80,15 @@ public class Maze {
     /// can't move, then display "Can't go that way!"
     /// </summary>
     public void MoveDown() {
+        if (_mazeMap.TryGetValue((_currX, _currY + 1), out bool[] movements)) {
+            if (movements[3]) {
+                _currY++;
+            } else {
+                Console.WriteLine("Can't go that way!");
+            }
+        } else {
+            Console.WriteLine("Can't go that way!");
+        }
         // FILL IN CODE
     }
 
