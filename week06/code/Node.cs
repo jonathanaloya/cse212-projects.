@@ -8,16 +8,16 @@ public class Node {
     }
 
     public void Insert(int value) {
-        if (value < Data) {
+        if (value < this.Data) {
             // Insert to the left
-            if (Left is null)
+            if (Left == null)
                 Left = new Node(value);
             else
                 Left.Insert(value);
         }
-        else {
+        else if (value > this.Data){
             // Insert to the right
-            if (Right is null)
+            if (Right == null)
                 Right = new Node(value);
             else
                 Right.Insert(value);
@@ -25,12 +25,33 @@ public class Node {
     }
 
     public bool Contains(int value) {
+        if (value == this.Data)
+        {
+            return true;
+        }
+        else if (value < this.Data && this.Left != null)
+        {
+            return this.Left.Contains(value);
+        }
+        else if (value > this.Data && this.Right != null)
+        {
+            return this.Right.Contains(value);
+        }
+        else
+        {
         // TODO Start Problem 2
         return false;
+        }
     }
 
     public int GetHeight() {
+        if (this == null)
+            return 0;
+            int leftHeight = this.Left?.GetHeight()?? 0;
+            int rightHeight = this.Right?.GetHeight()?? 0;
+
+            return 1 + Math.Max(leftHeight, rightHeight);
         // TODO Start Problem 4
-        return 0; // Replace this line with the correct return statement(s)
+         // Replace this line with the correct return statement(s)
     }
 }
